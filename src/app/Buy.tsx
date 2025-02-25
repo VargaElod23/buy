@@ -1,4 +1,4 @@
-import { createThirdwebClient } from "thirdweb";
+import { createThirdwebClient, defineChain } from "thirdweb";
 import { ThirdwebProvider, ConnectButton, PayEmbed } from "thirdweb/react";
 import { BackgroundLines } from "./components/BgLines";
 
@@ -30,7 +30,15 @@ export default function BuyPage() {
           <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl border-b">
             Buy Taraxa
           </h1>
-          <PayEmbed client={client} />
+          <PayEmbed
+            client={client}
+            payOptions={{
+              prefillBuy: {
+                chain: defineChain(841),
+                amount: "100000",
+              },
+            }}
+          />
           <div style={{ position: "absolute", top: 5, right: 5 }}>
             <ConnectButton client={client} />
           </div>
